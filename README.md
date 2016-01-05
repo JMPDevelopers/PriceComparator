@@ -1,9 +1,19 @@
 # PriceComparator
-Price Comparator is an application which contain product with name and price from Makro, Selgros in future Tesco, Alma, Auchan. In first view it is web search for the best price of product.
-Started page is for sign in or sign up - the application will require user authentication. To start browsing this application you must create account.
-Go to sign up page, write necessary credential and click button register. Next you should switch to your e-mail box and accept link from application mail.
-If you have already had account you should skip point with create account. You will asked about login. 
-In home page, in right top corner there will be icon of your account if you choose it you will be forward to your account page. There will be fields with your data and option for reset password.
-1. On home page is web search. We should write a name of product which we want to search and click button "search". After action show you list with all product which contain your letters chain in the "name". Default it is ascending sorted by price. You could sort list by name in ascending and descending way.
-2. On home page is dynamic web search in which you wrote name of product or chain of several first letters. Answers are list of products with prices from several wholesale and ascending sorted by price. In future will be sorted mechanism for "name" column also.
-Products will update every day at 2:00 am.
+The application gathers data on all products in chosen shops and displays them to a user.
+Account
+- User authentication with email and password
+- creating account will require user to give email and password
+- the email must be unique
+- the password must have at least 3 characters
+- after creating account user will receive email with confirmation link
+- password change feature
+- email change feature
+
+Functionalities
+- searched shops include Makro and Selgros (in future Tesco, Alma, Auchan etc)
+- the product information contain its name, price and shop
+- the application should hava a case insensitive search feature that enables it to search for all items that contain a given characters
+- the results should be displayed in a list with name, price and shop information
+- the list will be sorted ascending by price
+- the list should be sortable by product name, and price in both descending and ascending order
+- product information update will occur everyday at 2am
