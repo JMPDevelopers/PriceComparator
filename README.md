@@ -17,3 +17,4 @@ Functionalities
 - the list will be sorted ascending by price
 - the list should be sortable by product name, and price in both descending and ascending order
 - product information update will occur everyday at 2am
+- test
