@@ -3,6 +3,7 @@ package com.jmpdev.domain;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 
 /**
  * Created by HP on 2016-01-25.
@@ -21,6 +22,7 @@ public class User {
     @Column(nullable = false)
     @Email
     private String email;
+    private ZonedDateTime creationDate;
 
     private User() {
     }
@@ -62,6 +64,8 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    //creationDate do not have getter and setter
 
     @Override
     public String toString() {
