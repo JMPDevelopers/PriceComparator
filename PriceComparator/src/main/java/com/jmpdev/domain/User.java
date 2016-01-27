@@ -3,31 +3,34 @@ package com.jmpdev.domain;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
 
 /**
  * Created by HP on 2016-01-25.
  */
 @Entity()
-@Table(name = "userData")
+@Table(name = "USER_DATA")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "USER_ID", unique = true, nullable = false)
     private long id;
-    @Column(nullable = false)
+
+    @Column(nullable = false, name = "FIRST_NAME")
     private String firstName;
-    @Column(nullable = false)
+
+    @Column(name = "LAST_NAME")
     private String lastName;
-    @Column(nullable = false)
+
+    @Column(name = "EMAIL")
     @Email
     private String email;
-    private ZonedDateTime creationDate;
 
-    private User() {
+    public User() {
     }
 
-    private User(String firstName, String LastName, String email) {
+    public User(String firstName, String lastName, String email) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -64,8 +67,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    //creationDate do not have getter and setter
 
     @Override
     public String toString() {
