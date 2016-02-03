@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: RepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.051 sec <<< FAILURE! - in RepositoryTest
+saveUserTest(RepositoryTest)  Time elapsed: 0.049 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at RepositoryTest.saveUserTest(RepositoryTest.java:26)
+

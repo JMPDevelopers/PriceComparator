@@ -1,2 +1,15 @@
+com\jmpdev\controller\ControllerBase.class
+com\jmpdev\domain\UserRole.class
+com\jmpdev\configuration\SecurityConfiguration.class
+com\jmpdev\pojo\Response.class
+com\jmpdev\service\AuthenticationService.class
+com\jmpdev\controller\impl\AuthenticationController.class
+com\jmpdev\configuration\OracleConfiguration.class
+com\jmpdev\service\AuthService.class
+com\jmpdev\controller\impl\ExceptionControllerAdvice.class
+com\jmpdev\repository\UserRepository.class
+com\jmpdev\controller\UserType.class
+com\jmpdev\pojo\ErrorCodes.class
 com\jmpdev\Application.class
-com\jmpdev\controllers\HelloController.class
+com\jmpdev\configuration\SecurityWebApplicationInitializer.class
+com\jmpdev\domain\User.class

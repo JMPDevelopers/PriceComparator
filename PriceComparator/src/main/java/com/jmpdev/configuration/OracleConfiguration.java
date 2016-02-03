@@ -1,16 +1,16 @@
 package com.jmpdev.configuration;
 
 
+import com.jmpdev.pojo.DataConfigProfile;
 import oracle.jdbc.pool.OracleDataSource;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.config.Order;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.context.annotation.Profile;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
@@ -18,10 +18,12 @@ import java.sql.SQLException;
 /**
  * Created by HP on 2016-01-24.
  */
-
 @Configuration
 @ConfigurationProperties("oracle")
 public class OracleConfiguration {
+
+    private final Logger LOGGER = LogManager.getLogger(OracleConfiguration.class);
+
     @NotNull
     private String username;
 
@@ -45,7 +47,7 @@ public class OracleConfiguration {
 
     @Bean
     DataSource dataSource() throws SQLException {
-
+        LOGGER.error("Oracle database!");
         OracleDataSource dataSource = new OracleDataSource();
         dataSource.setUser(username);
         dataSource.setPassword(password);
@@ -55,26 +57,4 @@ public class OracleConfiguration {
         return dataSource;
     }
 
-    @Bean
-    public EntityManagerFactory entityManagerFactory() throws SQLException {
-
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
-
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.jmpdev");
-        factory.setDataSource(dataSource());
-        factory.afterPropertiesSet();
-
-        return factory.getObject();
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() throws SQLException {
-
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(entityManagerFactory());
-        return txManager;
-    }
 }
