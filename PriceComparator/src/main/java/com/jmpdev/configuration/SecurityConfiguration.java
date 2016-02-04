@@ -38,12 +38,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anonymous().and()  //for all roles, default but good practise deny-by-default
                 .authorizeRequests()
                 .antMatchers(ControllerBase.MAPPING_AUTH_ALL).permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .anyRequest().authenticated().and()
+                .authorizeRequests().antMatchers("/console/**").permitAll().and()
                 .formLogin()
                 .loginPage(ControllerBase.MAPPING_LOGIN).permitAll()
                 .and()
                 .logout().permitAll();
+
 
     }
 }

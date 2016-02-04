@@ -1,0 +1,1 @@
+INSERT INTO USERS VALUES(1, 'Hello', 'JAc', 'fel', 'ja@gmail.com', 'topmeski', true, CURRENT_DATE())

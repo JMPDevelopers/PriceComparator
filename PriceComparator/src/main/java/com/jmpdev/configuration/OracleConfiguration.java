@@ -3,8 +3,8 @@ package com.jmpdev.configuration;
 
 import com.jmpdev.pojo.DataConfigProfile;
 import oracle.jdbc.pool.OracleDataSource;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Order;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +20,7 @@ import java.sql.SQLException;
  */
 @Configuration
 @ConfigurationProperties("oracle")
+@Profile(DataConfigProfile.ORACLE)
 public class OracleConfiguration {
 
     private final Logger LOGGER = LogManager.getLogger(OracleConfiguration.class);
