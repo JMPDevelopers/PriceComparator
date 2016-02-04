@@ -15,7 +15,6 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Inherited
 @WebAppConfiguration
 @ActiveProfiles(DataConfigProfile.H2)
 @SpringApplicationConfiguration(classes = Application.class)

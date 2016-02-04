@@ -1,23 +1,24 @@
 package repository;
 
 import annotation.ComponentTest;
-import com.jmpdev.Application;
 import com.jmpdev.domain.User;
 import com.jmpdev.domain.UserRole;
-import com.jmpdev.pojo.DataConfigProfile;
 import com.jmpdev.repository.UserRepository;
 import com.jmpdev.repository.UserRoleRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Ignore;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.UUID;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,51 +29,61 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RepositoryTest {
 
-    private final Logger LOGGER = LogManager.getLogger(RepositoryTest.class);
-
     @Autowired
     UserRepository userRepository;
 
     @Autowired
     UserRoleRepository userRoleRepository;
 
-    @Test
-    public void saveUserTest() {
-        User user = new User(UUID.randomUUID().toString(), "Jarek", "jureczku", "jac@gmail.com", "ryba");
-        userRepository.save(user);
+    private final Logger LOGGER = LogManager.getLogger(RepositoryTest.class);
+
+    private EmbeddedDatabase db;
+
+    @Before
+    public void setUp() {
+        //db = new EmbeddedDatabaseBuilder().addDefaultScripts().build();
+        db = new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("db/sql/create-db.sql")
+                .addScript("db/sql/insert-data.sql")
+                .build();
     }
 
-    @Test
-    public void saveRoleTest() {
-        UserRole userRole = new UserRole();
-        userRole.setRoleName("USER");
-        userRoleRepository.save(userRole);
-    }
-
-    @Test
-    public void saveUserWithRoleTest() {
-
-    }
-
-    @Test
-    @Ignore
-    public void getRoleOfUserTest() {
-        User user = userRepository.findByUsername("JACEK123");
-        String role = user.getRoles().get(0).getRoleName();
-        assertEquals("USER", role);
-    }
-
-    @Test
-    @Ignore
-    public void getUserRoleTest() {
-        UserRole userRole = userRoleRepository.findByRoleName("USER");
-        String ryba = userRole.toString();
-        LOGGER.error(ryba);
-    }
-
-//    @Test
-//    public void Test(){}
+//    @Before
+//    public void saveUserWithRoles() {
+//        User user = new User("ja3ekja", "Jacek", "Felix", "ja@gmail.com", "pasword");
+//        List<UserRole> userList = new LinkedList<UserRole>();
+//        userList.add(new UserRole("ADMIN"));
+//        user.setRoles(userList);
+//        userRepository.save(user);
 //
+//    }
+//    @Test
+//    public void getUserRole(){
+//        User user = userRepository.findByUsername("ja3ekja");
+//        assertEquals("ADMIN", user.getRoles().get(0).getRoleName());
+//            }
+//
+//    @Test
+//    public void checkUserRoleTest() {
+//        UserRole userRoleUSER = new UserRole();
+//        userRoleUSER.setRoleName("USER");
+//        userRoleRepository.save(userRoleUSER);
+//
+//       UserRole role = userRoleRepository.findByRoleName("USER");
+//        assertEquals(role.getRoleName(), "USER");
+//    }
+
+
+    @Test
+    public void Test(){
+        List<User> userList = userRepository.findAll();
+        assertNotNull(userList);
+        assertEquals(userList.get(0), null);
+        UserRole userRole = new UserRole("DBA");
+        //user.getRoles().get(0);
+    }
+
 //    @Test
 //    public void Test(){}
 //
