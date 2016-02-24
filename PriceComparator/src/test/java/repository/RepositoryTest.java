@@ -29,6 +29,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RepositoryTest {
 
+    //spokój, opanowanie, skill
     @Autowired
     UserRepository userRepository;
 
